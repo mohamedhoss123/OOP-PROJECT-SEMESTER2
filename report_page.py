@@ -3,13 +3,14 @@ from PyQt6.QtWidgets import QApplication, QWidget,QVBoxLayout,QPushButton
 from PyQt6.QtCharts import QChart, QChartView, QLineSeries
 
 
-class BarChartApp(QWidget):
+class ReportPage(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("PyQt6 Bar Chart")
 
         layout = QVBoxLayout()
-        button = QPushButton("Generate Chart")
+        button = QPushButton("previos")
+        button.clicked.connect(self.previos)
         layout.addWidget(button)
         series = QLineSeries()
         series.append(10, 20)
@@ -27,11 +28,6 @@ class BarChartApp(QWidget):
         self.setLayout(layout)
 
      
+    def previos(self):
+        print("previos")
 
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = BarChartApp()
-    window.resize(600, 400)
-    window.show()
-    sys.exit(app.exec())

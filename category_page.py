@@ -49,7 +49,3 @@ class CategoryWidget(QWidget):
         self.hide()
 
 
-app = QApplication([])
-window = CategoryPage()
-window.show()
-app.exec()

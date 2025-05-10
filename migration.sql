@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS products (
 
 CREATE TABLE IF NOT EXISTS orders (
     id INTEGER PRIMARY KEY,
-    created_at DATETIME NOT NULL
+    created_at DATETIME NOT NULL,
+    status TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS order_items (
