@@ -21,6 +21,6 @@ class HomeWidget(QWidget):
         self.setLayout(layout)
 
     def go_to_admin(self):
-        Navigator.navigate("admin")
+        Navigator.go_to("admin")
     def go_to_order(self):
-        Navigator.navigate("category")
+        Navigator.go_to("category")

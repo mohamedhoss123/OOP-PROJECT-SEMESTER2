@@ -1,8 +1,7 @@
 from PyQt6.QtWidgets import QStackedWidget
 
-from routes import routes
 class Navigator:
-    stack = QStackedWidget()
+    stack = None
     _widget_map = {}
 
     @staticmethod

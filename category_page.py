@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QWidget,QVBoxLayout,QPushButton,QApplication,QLabel,QHBoxLayout,QLineEdit
 from category_data import CategoryData
+from navigator import Navigator
 class CategoryPage(QWidget):
     def __init__(self):
         super().__init__()
@@ -27,7 +28,7 @@ class CategoryPage(QWidget):
         data = category.save(self.input.text())
         self.add_category(data)
     def previos(self):
-        print("previos")
+        Navigator.go_to("home")
 
 
 class CategoryWidget(QWidget):
