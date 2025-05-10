@@ -24,16 +24,16 @@ class CategoryPage(QWidget):
         self.layout.addWidget(CategoryWidget(name))
     def submite(self):
         category = CategoryData()
-        category.save(self.input.text())
-        self.add_category(self.input.text())
+        data = category.save(self.input.text())
+        self.add_category(data)
     def previos(self):
         print("previos")
 
 
 class CategoryWidget(QWidget):
     def __init__(self,category):
-        print(category)
         super().__init__()
+        print(category)
         self.id = category[0]
         self.name = category[1]
         layout = QHBoxLayout()
