@@ -1,16 +1,16 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QWidget,QVBoxLayout,QPushButton
 from PyQt6.QtCharts import QChart, QChartView, QLineSeries
+from navigator import Navigator
 
-
-class ReportPage(QWidget):
+class ReportPage(QWidget, Navigator):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("PyQt6 Bar Chart")
-
+        self.setWindowTitle("Galala Bites Report")
+        
         layout = QVBoxLayout()
         button = QPushButton("previos")
-        button.clicked.connect(self.previos)
+        button.clicked.connect(self.previous)
         layout.addWidget(button)
         series = QLineSeries()
         series.append(10, 20)
@@ -28,6 +28,6 @@ class ReportPage(QWidget):
         self.setLayout(layout)
 
      
-    def previos(self):
-        print("previos")
+    def previous(self):
+        self.go_to("admin")
 

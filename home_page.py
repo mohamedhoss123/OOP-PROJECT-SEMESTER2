@@ -23,4 +23,4 @@ class HomeWidget(QWidget):
     def go_to_admin(self):
         Navigator.go_to("admin")
     def go_to_order(self):
-        Navigator.go_to("category")
+        Navigator.go_to("order")

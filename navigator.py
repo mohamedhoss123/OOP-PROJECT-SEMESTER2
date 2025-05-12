@@ -6,12 +6,15 @@ class Navigator:
 
     @staticmethod
     def register_widget(name, widget):
-        index = Navigator.stack.addWidget(widget)
-        Navigator._widget_map[name] = index
+        Navigator._widget_map[name] = widget
 
     @staticmethod
     def go_to(name):
-        index = Navigator._widget_map.get(name)
-        if index is not None:
-            Navigator.stack.setCurrentIndex(index)
+        widget = Navigator._widget_map[name]
+        data = Navigator.stack.currentWidget()
+        if data != None:
+            Navigator.stack.removeWidget(data)
+        Navigator.stack.addWidget(widget())
+
+
 

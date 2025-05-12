@@ -1,6 +1,6 @@
 from data_container import DataContainer
 class CategoryData(DataContainer):
-    def __init__(self,*args):
+    def __init__(self):
         super().__init__()
     def save(self,name):
         self.exec(f"insert into categories(name) values(\"{name}\") ")
