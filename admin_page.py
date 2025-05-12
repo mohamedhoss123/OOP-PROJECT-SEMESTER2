@@ -22,10 +22,10 @@ class AdminPage(QWidget,Navigator):
         
         button_products = QPushButton(text="products")
         button_products.clicked.connect(self.go_to_products)
+        layout.addWidget(button_products)
+
 
         
-
-        layout.addWidget(button_products)
         self.setLayout(layout)
         
     def go_to_category(self):

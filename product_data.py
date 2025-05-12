@@ -3,7 +3,7 @@ class ProductData(DataContainer):
     def __init__(self):
         super().__init__()
     
-    def save(self, name: str, price: float, category_id: int) -> list:
+    def save(self, name, price, category_id):
         self.exec(f"insert into products(name,price,category_id) values(\"{name}\",\"{price}\",\"{category_id}\") ")
         return self.exec("SELECT * FROM products WHERE id = last_insert_rowid();", fetch=True)[0]
     

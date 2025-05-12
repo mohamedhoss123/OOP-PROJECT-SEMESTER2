@@ -14,6 +14,7 @@ class DataContainer:
 
     def __del__(self):
         self.conn.close()
+
     def migrate(self):
         self.conn.executescript("""
 CREATE TABLE IF NOT EXISTS categories (
@@ -40,7 +41,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     quantity INTEGER NOT NULL,
     total REAL NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(id),
-    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
 """)

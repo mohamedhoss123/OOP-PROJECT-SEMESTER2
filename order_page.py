@@ -11,12 +11,12 @@ from product_data import ProductData
 from navigator import Navigator
 from order_data import OrderData
 from category_data import CategoryData
-class OrderPage(QWidget, Navigator, ProductData,OrderData,CategoryData):
+class OrderPage(QWidget, Navigator, ProductData,CategoryData):
     def __init__(self):
         super().__init__()
         ProductData.__init__(self)
         CategoryData.__init__(self)
-        OrderData.__init__(self)
+        # OrderData.__init__(self)
         
         self.setWindowTitle("Galala Bites")
         self.setGeometry(100, 100, 900, 600)
@@ -41,6 +41,8 @@ class OrderPage(QWidget, Navigator, ProductData,OrderData,CategoryData):
 
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
+
+
         menu_widget = QWidget()
         menu_layout = QVBoxLayout()
 
@@ -86,7 +88,7 @@ class OrderPage(QWidget, Navigator, ProductData,OrderData,CategoryData):
         self.total_label.setFont(QFont("Arial", 16, QFont.Weight.Bold))
         right_layout.addWidget(self.total_label)
 
-        self.tax_label = QLabel("Tax (14%): 0 EGP")
+        self.tax_label = QLabel("VAT (14%): 0 EGP")
         self.tax_label.setFont(QFont("Arial", 14))
         right_layout.addWidget(self.tax_label)
 

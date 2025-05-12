@@ -1,14 +1,16 @@
-from PyQt6.QtWidgets import QStackedWidget, QWidget,QVBoxLayout,QPushButton,QApplication,QLabel,QHBoxLayout,QLineEdit
+from PyQt6.QtWidgets import QWidget,QVBoxLayout,QPushButton,QLabel,QHBoxLayout
 from navigator import Navigator
 class HomeWidget(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()
 
-        label = QLabel(text="Welcome To Our Resturant")
+        label = QLabel(text="Welcome To Our Hotel")
 
         button_admin = QPushButton(text="admin")
         button_admin.clicked.connect(self.go_to_admin)
+
+
         button_order = QPushButton(text="order")
         button_order.clicked.connect(self.go_to_order)
 

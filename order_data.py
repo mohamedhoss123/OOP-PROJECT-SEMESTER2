@@ -10,8 +10,7 @@ class OrderData(DataContainer):
     def save_order_items(self,order_number,order_items):
         for i in order_items:
             self.exec(f"insert into order_items(product_id,quantity,total,order_id) values({i[0]},{i[2]},{i[2]*i[3]},{order_number})")
-            print(i)
 
     def get_all_orders(self):
-        pass
+        return self.exec("SELECT * FROM orders",fetch=True)
     

@@ -21,8 +21,8 @@ class CategoryPage(QWidget,Navigator):
             self.add_category(i)
         self.setLayout( self.layout)
 
-    def add_category(self,name):
-        self.layout.addWidget(CategoryWidget(name))
+    def add_category(self,data):
+        self.layout.addWidget(CategoryWidget(data))
     def submite(self):
         category = CategoryData()
         data = category.save(self.input.text())
@@ -38,9 +38,11 @@ class CategoryWidget(QWidget):
         self.id = category[0]
         self.name = category[1]
         layout = QHBoxLayout()
+
         label = QLabel(text=self.name)
         button = QPushButton(text="delete")
         button.clicked.connect(self.delete)
+
         layout.addWidget(label)
         layout.addWidget(button)
         self.setLayout(layout)

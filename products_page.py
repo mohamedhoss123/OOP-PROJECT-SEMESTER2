@@ -8,7 +8,7 @@ class ProductPage(QWidget,CategoryData,ProductData,Navigator):
     def __init__(self):
         super().__init__()
         products = self.get_all_products()
-        print(products)
+        
         self.custome_layout = QVBoxLayout()
         self.setLayout(self.custome_layout)
 
@@ -40,10 +40,10 @@ class ProductPage(QWidget,CategoryData,ProductData,Navigator):
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll_widget = QWidget()
-        scroll_layout = QVBoxLayout()
-        scroll_widget.setLayout(scroll_layout)
+        self.scroll_layout = QVBoxLayout()
+        scroll_widget.setLayout(self.scroll_layout)
         for i in products:
-            scroll_layout.addWidget(ProductComponent(i))
+            self.scroll_layout.addWidget(ProductComponent(i))
         scroll.setWidget(scroll_widget)
         self.custome_layout.addWidget(scroll)
 
@@ -55,7 +55,7 @@ class ProductPage(QWidget,CategoryData,ProductData,Navigator):
         price = float(self.input_price.text())
         category_id = self.categoryDropdown.currentData()
         data = ProductData().save(name, price, category_id)
-        self.custome_layout.addWidget(ProductComponent(data))
+        self.scroll_layout.addWidget(ProductComponent(data))
     def previos(self):
         self.go_to("admin")
 
