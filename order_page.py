@@ -16,7 +16,6 @@ class OrderPage(QWidget, Navigator, ProductData,CategoryData):
         super().__init__()
         ProductData.__init__(self)
         CategoryData.__init__(self)
-        # OrderData.__init__(self)
         
         self.setWindowTitle("Galala Bites")
         self.setGeometry(100, 100, 900, 600)
@@ -133,14 +132,14 @@ class OrderPage(QWidget, Navigator, ProductData,CategoryData):
             QMessageBox.warning(self, "Empty Order", "Please add some items.")
             return
 
-        order_number = self.create_order()
+        order_number = OrderData().create_order()
         total = sum(i[3] for i in self.order_items)
         tax = round(total * 0.14)
         grand_total = total + tax
 
         QMessageBox.information(self, "Order Confirmed",
             f"Order #{order_number} confirmed!\nTotal: {grand_total} EGP\nPreparing now!")
-        self.save_order_items(order_number,self.order_items)
+        OrderData().save_order_items(order_number,self.order_items)
         self.clear_order()
 
     def previos(self):

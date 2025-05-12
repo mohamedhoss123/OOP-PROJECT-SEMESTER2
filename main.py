@@ -1,6 +1,6 @@
-from PyQt6.QtWidgets import QApplication, QStackedWidget, QPushButton, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QApplication, QStackedWidget, QVBoxLayout, QWidget
 import sys
-
+from PyQt6.QtGui import QIcon
 from report_page import ReportPage
 from category_page import CategoryPage
 from home_page import HomeWidget
@@ -15,8 +15,8 @@ from navigator import Navigator
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("galala bites")
-
+        self.setWindowTitle("Galala bites")
+        self.setWindowIcon(QIcon("galala.png"))
         self.stack = QStackedWidget()
         Navigator.stack = self.stack
    

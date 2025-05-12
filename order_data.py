@@ -14,3 +14,12 @@ class OrderData(DataContainer):
     def get_all_orders(self):
         return self.exec("SELECT * FROM orders",fetch=True)
     
+    def get_selles_in_week(self):
+        return self.exec("""
+    SELECT date(o.created_at) as date, sum(oi.total) as total
+    FROM orders o
+    JOIN order_items oi ON o.id = oi.order_id
+    WHERE o.created_at >= date('now', '-7 days')
+    GROUP BY date(o.created_at)
+    ORDER BY date(o.created_at)
+""", fetch=True)
