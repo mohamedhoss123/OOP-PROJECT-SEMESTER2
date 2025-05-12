@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget,QVBoxLayout,QListWidget,QComboBox,QPushButton,QApplication,QLabel,QHBoxLayout,QLineEdit
+from PyQt6.QtWidgets import QWidget,QVBoxLayout,QScrollArea,QComboBox,QPushButton,QApplication,QLabel,QHBoxLayout,QLineEdit
 from product_data import ProductData
 from category_data import CategoryData
 from navigator import Navigator
@@ -37,8 +37,15 @@ class ProductPage(QWidget,CategoryData,ProductData,Navigator):
         self.button.clicked.connect(self.add_product)
         self.custome_layout.addWidget(self.button)
 
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll_widget = QWidget()
+        scroll_layout = QVBoxLayout()
+        scroll_widget.setLayout(scroll_layout)
         for i in products:
-            self.custome_layout.addWidget(ProductComponent(i))
+            scroll_layout.addWidget(ProductComponent(i))
+        scroll.setWidget(scroll_widget)
+        self.custome_layout.addWidget(scroll)
 
        
 
@@ -47,8 +54,8 @@ class ProductPage(QWidget,CategoryData,ProductData,Navigator):
         name = self.input_name.text()
         price = float(self.input_price.text())
         category_id = self.categoryDropdown.currentData()
-        ProductData().save(name, price, category_id)
-        self.custome_layout.addWidget()
+        data = ProductData().save(name, price, category_id)
+        self.custome_layout.addWidget(ProductComponent(data))
     def previos(self):
         self.go_to("admin")
 
@@ -69,6 +76,7 @@ class ProductComponent(QWidget):
         layout.addWidget(self.label)
         button = QPushButton(text="delete")
         button.clicked.connect(self.delete)
+        layout.addWidget(button)
     def delete(self):
         ProductData().delete(self.id)
         self.hide()

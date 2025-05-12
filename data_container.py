@@ -31,17 +31,16 @@ CREATE TABLE IF NOT EXISTS products (
 
 CREATE TABLE IF NOT EXISTS orders (
     id INTEGER PRIMARY KEY,
-    created_at DATETIME NOT NULL,
-    status TEXT NOT NULL
+    created_at DATETIME NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS order_items (
     order_id INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
+    total REAL NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(id),
     FOREIGN KEY (product_id) REFERENCES products(id),
-    PRIMARY KEY (order_id, product_id)
 );
 
 """)

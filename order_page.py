@@ -9,26 +9,35 @@ from PyQt6.QtCore import Qt
 
 from product_data import ProductData
 from navigator import Navigator
-
-class OrderPage(QWidget, Navigator, ProductData):
+from order_data import OrderData
+from category_data import CategoryData
+class OrderPage(QWidget, Navigator, ProductData,OrderData,CategoryData):
     def __init__(self):
         super().__init__()
         ProductData.__init__(self)
+        CategoryData.__init__(self)
+        OrderData.__init__(self)
+        
         self.setWindowTitle("Galala Bites")
         self.setGeometry(100, 100, 900, 600)
 
         self.menu = self.get_all_products()
         self.order_items = []
-
+        self.catigores = self.get_all_categories()
         self.init_ui()
 
     def init_ui(self):
         main_layout = QHBoxLayout()
         left_layout = QVBoxLayout()
+        top_layout = QHBoxLayout()
+        prev_button = QPushButton("Previous")
+        prev_button.clicked.connect(self.previos)
 
         title = QLabel("Galala Bites Menu")
         title.setFont(QFont("Arial", 24, QFont.Weight.Bold))
-        left_layout.addWidget(title)
+        top_layout.addWidget(prev_button)
+        top_layout.addWidget(title)
+        left_layout.addLayout(top_layout)
 
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
@@ -102,12 +111,12 @@ class OrderPage(QWidget, Navigator, ProductData):
         print(id,name,price,qty)
      
         total = price * qty
-        self.order_items.append((name, qty, total))
+        self.order_items.append((id,name, qty, total))
         self.order_list.addItem(QListWidgetItem(f"{name} x{qty} = {total} EGP"))
         self.update_total()
 
     def update_total(self):
-        subtotal = sum(i[2] for i in self.order_items)
+        subtotal = sum(i[3] for i in self.order_items)
         tax = round(subtotal * 0.14)
         self.total_label.setText(f"Total: {subtotal + tax} EGP")
         self.tax_label.setText(f"Tax (14%): {tax} EGP")
@@ -122,12 +131,15 @@ class OrderPage(QWidget, Navigator, ProductData):
             QMessageBox.warning(self, "Empty Order", "Please add some items.")
             return
 
-        order_number = random.randint(1000, 9999)
-        total = sum(i[2] for i in self.order_items)
+        order_number = self.create_order()
+        total = sum(i[3] for i in self.order_items)
         tax = round(total * 0.14)
         grand_total = total + tax
 
         QMessageBox.information(self, "Order Confirmed",
             f"Order #{order_number} confirmed!\nTotal: {grand_total} EGP\nPreparing now!")
-
+        self.save_order_items(order_number,self.order_items)
         self.clear_order()
+
+    def previos(self):
+        self.go_to("home")

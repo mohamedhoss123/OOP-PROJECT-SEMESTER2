@@ -1,10 +1,10 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QPushButton, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QApplication, QStackedWidget, QPushButton, QVBoxLayout, QWidget
+import sys
 
 from report_page import ReportPage
 from category_page import CategoryPage
 from home_page import HomeWidget
 from admin_page import AdminPage
-import sys
 from products_page import ProductPage
 from order_page import OrderPage
 

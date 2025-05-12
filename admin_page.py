@@ -6,6 +6,12 @@ class AdminPage(QWidget,Navigator):
         super().__init__()
         layout = QVBoxLayout()
 
+
+        button_previos = QPushButton(text="previos")
+        button_previos.clicked.connect(self.previos)
+        layout.addWidget(button_previos)
+
+
         button_category = QPushButton(text="category")
         button_category.clicked.connect(self.go_to_category)
         layout.addWidget(button_category)
@@ -16,6 +22,9 @@ class AdminPage(QWidget,Navigator):
         
         button_products = QPushButton(text="products")
         button_products.clicked.connect(self.go_to_products)
+
+        
+
         layout.addWidget(button_products)
         self.setLayout(layout)
         
@@ -27,4 +36,7 @@ class AdminPage(QWidget,Navigator):
         
     def go_to_products(self):
         self.go_to("products")
+    
+    def previos(self):
+        self.go_to("home")
 
